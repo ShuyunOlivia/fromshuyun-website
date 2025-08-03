@@ -1,0 +1,164 @@
+/* 页面滚动动画 */
+[data-aos] {
+    opacity: 0;
+    transition-property: transform, opacity;
+}
+
+[data-aos].aos-animate {
+    opacity: 1;
+}
+
+/* 自定义动画 */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* 应用动画 */
+.hero-content {
+    animation: float 3s ease-in-out infinite;
+}
+
+.gallery-item {
+    animation: pulse 2s ease-in-out infinite;
+    animation-play-state: paused;
+}
+
+.gallery-item:hover {
+    animation-play-state: running;
+}
+
+/* 导航链接动画 */
+.nav-links a {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* 照片描述动画 */
+.gallery-description {
+    animation: slideIn 0.3s ease-out;
+}
+
+/* 聊天消息动画 */
+.message {
+    animation: slideIn 0.3s ease-out;
+}
+
+.message.user {
+    animation: slideInRight 0.3s ease-out;
+}
+
+.message.ai {
+    animation: slideInLeft 0.3s ease-out;
+}
+
+/* 加载动画 */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255,255,255,.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* 主题切换动画 */
+.theme-toggle {
+    animation: scaleIn 0.3s ease-out;
+}
+
+/* 社交媒体图标动画 */
+.social-icon {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* 祝福语区域动画 */
+.wishes-content {
+    animation: scaleIn 0.5s ease-out;
+}
+
+/* 聊天界面动画 */
+.chat-container {
+    animation: slideInRight 0.3s ease-out;
+}
+
+/* 按钮悬停动画 */
+button:hover {
+    animation: pulse 0.5s ease-in-out;
+} 

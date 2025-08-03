@@ -1,0 +1,191 @@
+.intro-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s ease;
+}
+
+.intro-title {
+    color: white;
+    font-size: 32px;
+    font-family: 'Noto Serif SC', serif;
+    margin-bottom: 30px;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards;
+}
+
+.photo-container {
+    width: 90%;
+    height: 70vh;
+    position: relative;
+    margin: 20px 0;
+}
+
+.photo-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+    transition: all 0.8s ease;
+}
+
+.photo-item.show {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
+
+.photo-item img {
+    max-width: 100%;
+    max-height: calc(100% - 60px);
+    object-fit: contain;
+    border-radius: 15px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+.photo-description {
+    color: white;
+    font-size: 18px;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 25px;
+    backdrop-filter: blur(10px);
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.5s ease 0.3s;
+}
+
+.photo-item.show .photo-description {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.progress-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.progress-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+.progress-dot.active {
+    background-color: white;
+    transform: scale(1.2);
+}
+
+.controls {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    gap: 15px;
+}
+
+.control-button {
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.15);
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.control-button:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    transform: scale(1.1);
+}
+
+.control-button.music.off {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.fade-out {
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+/* 添加响应式设计 */
+@media (max-width: 768px) {
+    .photo-container {
+        width: 95%;
+        height: 60vh;
+    }
+
+    .intro-title {
+        font-size: 24px;
+    }
+
+    .photo-description {
+        font-size: 16px;
+    }
+
+    .control-button {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+}
+/* 入场动画容器样式 */
+.intro-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s ease;
+}
+
+/* 淡出效果 */
+.fade-out {
+    opacity: 0 !important;
+    pointer-events: none;
+}
+
+/* 主页内容容器样式 */
+.main-content {
+    position: relative;
+    min-height: 100vh;
+}

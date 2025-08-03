@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>我们的家庭相册</title>
+    <!-- 引入字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <!-- 引入Font Awesome图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- 引入自定义样式 -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/intro-animation.css">
+    <link rel="stylesheet" href="styles/like-button.css">
+   
+    <style>
+        /* 初始化时隐藏主页内容 */
+        .navbar, .hero, .gallery {
+            display: none;
+        }
+        
+        /* 确保入场动画容器在最上层 */
+        .intro-container {
+            z-index: 9999;
+        }
+        
+        /* 主页内容显示时的过渡效果 */
+        .navbar.show, .hero.show, .gallery.show {
+            display: block;
+            animation: fadeIn 1s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    </div>
+</div>
+
+    <!-- 入场动画容器 -->
+    <div id="intro-container" class="intro-container">
+        <div class="intro-text">
+            <h1>温暖时光</h1>
+            <p>载入美好回忆...</p>
+        </div>
+        <div class="photo-container">
+            <!-- 照片会通过 JavaScript 动态插入 -->
+        </div>
+        <div class="progress-container">
+            <!-- 进度指示器会通过 JavaScript 动态插入 -->
+        </div>
+        <div class="controls">
+            <!-- 控制按钮会通过 JavaScript 动态插入 -->
+        </div>
+    </div>
+
+    <!-- 主页内容容器 -->
+    <div class="main-content">
+        <!-- 导航栏 -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="#" class="logo-link">你好你好
+                </a>
+                <div class="nav-links">
+                    <a href="#mother-daughter">我和妈妈</a>
+                    <a href="#sisters">我和姐姐</a>
+                    <a href="#mother-sister">妈妈和姐姐</a>
+                    <a href="#family-three">我們三個人</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- 主横幅 -->
+        <section class="hero">
+            <img src="images/images_family/hero.jpg" class="hero-background" alt="Hero Background">
+            <div class="hero-content">
+                <div class="birthday-wishes">
+                    <h1>生日快樂！</h1>
+                    <h2>Happy Birthday!</h2>
+                    <p>记录&回憶</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 照片展示区 -->
+        <section class="gallery">
+            <!-- 我和妈妈的照片区域 -->
+            <div id="mother-daughter" class="gallery-section">
+                <h2>我和妈妈</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="images/images_family/我和媽媽/我和媽媽在張家港香山.jpg" alt="我和媽媽在張家港香山">
+                        <div class="gallery-caption">我和媽媽在張家港香山</div>
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="images/images_family/我和媽媽/我和媽媽在上海花園酒店.jpg" alt="我和媽媽在上海花園酒店">
+                        <div class="gallery-caption">我和媽媽在上海花園酒店</div>
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="images/images_family/我和媽媽/我和媽媽在公司電梯2.jpg" alt="我和媽媽在公司電梯2">
+                        <div class="gallery-caption">我和媽媽在公司電梯2</div>
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="images/images_family/我和媽媽/我和媽媽在日本.jpg" alt="我和媽媽在日本">
+                        <div class="gallery-caption">我和媽媽在日本</div>
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="images/images_family/我和媽媽/我和媽媽在初中大禮堂.jpg" alt="我和媽媽在初中大禮堂">
+                        <div class="gallery-caption">我和媽媽在初中大禮堂</div>
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="images/images_family/我和媽媽/我和媽媽在初中畢業典禮上.jpg" alt="我和媽媽在初中畢業典禮上">
+                        <div class="gallery-caption">我和媽媽在初中畢業典禮上</div>
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="images/images_family/我和媽媽/我和媽媽在機場停車場.jpg" alt="我和媽媽在機場停車場">
+                        <div class="gallery-caption">我和媽媽在機場停車場</div>
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="images/images_family/我和媽媽/我和媽媽在公司電梯裏.jpg" alt="我和媽媽在公司電梯裏">
+                        <div class="gallery-caption">我和媽媽在公司電梯裏</div>
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="images/images_family/我和媽媽/我和媽媽在大提琴演出牌子前.jpg" alt="我和媽媽在大提琴演出牌子前">
+                        <div class="gallery-caption">我和媽媽在大提琴演出牌子前</div>
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="images/images_family/我和媽媽/我和媽媽在來舊金山的飛機上.jpg" alt="我和媽媽在來舊金山的飛機上">
+                        <div class="gallery-caption">我和媽媽在來舊金山的飛機上</div>
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="images/images_family/我和媽媽/我和媽媽在mt diablo.jpg" alt="我和媽媽在mt diablo">
+                        <div class="gallery-caption">我和媽媽在mt diablo</div>
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="images/images_family/我和媽媽/我和媽媽在danville做馬拉松志願者.jpg" alt="我和媽媽在danville做馬拉松志願者">
+                        <div class="gallery-caption">我和媽媽在danville做馬拉松志願者</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 我和姐姐的照片区域 -->
+            <div id="sisters" class="gallery-section">
+                <h2>我和姐姐</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="images/images_family/我和姐姐/我和姐姐在ktv.jpg" alt="我和姐姐在KTV">
+                        <div class="gallery-caption">我和姐姐在KTV</div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="images/images_family/我和姐姐/我送姐姐去香港讀書.jpg" alt="我送姐姐去香港讀書">
+                        <div class="gallery-caption">我送姐姐去香港讀書</div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="images/images_family/我和姐姐/我和姐姐在機場.jpg" alt="我和姐姐在機場">
+                        <div class="gallery-caption">我和姐姐在機場</div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="images/images_family/我和姐姐/我和姐姐在張家港舅舅家.jpg" alt="我和姐姐在張家港舅舅家">
+                        <div class="gallery-caption">我和姐姐在張家港舅舅家</div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="images/images_family/我和姐姐/我在上海家中拍的姐姐.jpg" alt="我在上海家中拍的姐姐">
+                        <div class="gallery-caption">我在上海家中拍的姐姐</div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="images/images_family/我和姐姐/我和姐姐在mt diablo山.jpg" alt="我和姐姐在mt diablo山">
+                        <div class="gallery-caption">我和姐姐在Mt Diablo山</div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="images/images_family/我和姐姐/我和姐姐在床上.jpg" alt="我和姐姐在床上">
+                        <div class="gallery-caption">我和姐姐在床上</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 妈妈和姐姐的照片区域 -->
+            <div id="mother-sister" class="gallery-section">
+                <h2>妈妈和姐姐</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="images/images_family/媽媽和姐姐/浦東機場搞笑照片.jpg" alt="浦東機場搞笑照片">
+                        <div class="gallery-caption">浦東機場搞笑照片</div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="images/images_family/媽媽和姐姐/媽媽送姐姐去香港讀研究生.jpg" alt="媽媽送姐姐去香港讀研究生">
+                        <div class="gallery-caption">媽媽送姐姐去香港讀研究生</div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="images/images_family/媽媽和姐姐/媽媽和姐姐在danville小區門口.jpg" alt="媽媽和姐姐在danville小區門口">
+                        <div class="gallery-caption">媽媽和姐姐在Danville小區門口</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 三口之家的照片区域 -->
+            <div id="family-three" class="gallery-section">
+                <h2>我們三個人</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="images/images_family/我們三口/在浦東機場送姐姐去香港.jpg" alt="在浦東機場送姐姐去香港">
+                        <div class="gallery-caption">在浦東機場送姐姐去香港</div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="images/images_family/我們三口/高山酒店電梯中.jpg" alt="高山酒店2">
+                        <div class="gallery-caption">高山酒店</div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="images/images_family/我們三口/2025張家港春節.jpg" alt="2025張家港春節">
+                        <div class="gallery-caption">2025張家港春節</div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="images/images_family/我們三口/mt diablo夕陽.jpg" alt="mt diablo夕陽">
+                        <div class="gallery-caption">Mt Diablo夕陽</div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="images/images_family/我們三口/mt diablo搞笑照片.jpg" alt="mt diablo搞笑照片">
+                        <div class="gallery-caption">Mt Diablo搞笑照片</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+
+        </div>
+
+            <!-- 中间：快速链接 -->
+            <div class="footer-section">
+                <h4>照片回顧</h4>
+                <ul class="footer-links">
+                    <li><a href="#mother-daughter">我和媽媽</a></li>
+                    <li><a href="#sisters">我和姐姐</a></li>
+                    <li><a href="#mother-sister">媽媽和姐姐</a></li>
+                    <li><a href="#family-three">我們三個人</a></li>
+                </ul>
+        </div>
+
+            <!-- 右侧：社交媒体 -->
+            <div class="footer-section">
+
+                <div class="social-icons">
+                    <a href="https://www.xiaohongshu.com/user/profile/6096b2b90000000001001d21" target="_blank" class="social-icon" id="xiaohongshu">
+                        <i class="fas fa-heart"></i>
+                        <span class="social-tooltip">小红书</span>
+                    </a>
+                    <a href="https://www.instagram.com/q.olllliii_?igsh=NTc4MTIwNjQ2YQ%3D%3D&utm_source=qr" target="_blank" class="social-icon" id="instagram">
+                        <i class="fab fa-instagram"></i>
+                        <span class="social-tooltip">Instagram</span>
+                    </a>
+                </div>
+        </div>
+    </div>
+
+        <!-- 版权信息 -->
+        <div class="footer-bottom">
+            <p>&copy; 2025 | Olivia Qian & her family</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 导航栏滚动效果
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+
+        // Logo点击事件
+        document.querySelector('.logo-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // 导航链接活跃状态
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const sections = document.querySelectorAll('section');
+
+        function setActiveLink() {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.scrollY >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', setActiveLink);
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // 处理照片区域的折叠/展开
+            const galleryHeaders = document.querySelectorAll('.gallery-header');
+            
+            galleryHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    // 获取对应的内容区域
+                    const content = this.nextElementSibling;
+                    const isActive = this.classList.contains('active');
+                    
+                    // 关闭其他所有展开的区域
+                    document.querySelectorAll('.gallery-header.active').forEach(activeHeader => {
+                        if (activeHeader !== this) {
+                            activeHeader.classList.remove('active');
+                            activeHeader.nextElementSibling.classList.remove('active');
+                        }
+                    });
+                    
+                    // 切换当前区域的状态
+                    this.classList.toggle('active');
+                    content.classList.toggle('active');
+                    
+                    // 如果是展开状态，滚动到该区域
+                    if (!isActive) {
+                        this.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+            
+            // 处理URL hash跳转
+            function handleHashChange() {
+                const hash = window.location.hash;
+                if (hash) {
+                    const targetSection = document.querySelector(`[data-section="${hash.slice(1)}"]`);
+                    if (targetSection) {
+                        targetSection.click();
+                    }
+                }
+            }
+            
+            // 页面加载和hash变化时处理跳转
+            window.addEventListener('hashchange', handleHashChange);
+            handleHashChange();
+        });
+
+        // 添加图片懒加载
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('.gallery-item img');
+            
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        observer.unobserve(img);
+                    }
+                });
+            });
+            
+            images.forEach(img => {
+                img.dataset.src = img.src;
+                img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; // 占位图
+                imageObserver.observe(img);
+            });
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+    <script src="js/intro-animation.js"></script>
+    <script>
+        // 等待页面加载完成后初始化动画
+        document.addEventListener('DOMContentLoaded', () => {
+            // 创建动画实例
+            const introAnimation = new IntroAnimation();
+            // 初始化动画
+            introAnimation.initialize();
+        });
+    </script>
+    <script src="js/main.js"></script>
+    <script>
+        // 添加调试信息
+        console.log('当前页面路径:', window.location.href);
+        console.log('图片根目录:', 'images/images_family/');
+        
+        // 检查第一张图片
+        const firstImg = document.querySelector('.hero-background');
+        if (firstImg) {
+            console.log('Hero图片路径:', firstImg.src);
+            console.log('Hero图片是否加载:', firstImg.complete);
+        }
+    </script>
+    <div class="social-links">
+        <a href="https://www.xiaohongshu.com/user/profile/6096b2b90000000001001d21" target="_blank" class="social-icon" id="xiaohongshu">
+            <i class="fas fa-heart"></i>
+            <span class="social-tooltip">小红书</span>
+        </a>
+        <a href="https://www.instagram.com/q.olllliii_?igsh=NTc4MTIwNjQ2YQ%3D%3D&utm_source=qr" target="_blank" class="social-icon" id="instagram">
+            <i class="fab fa-instagram"></i>
+            <span class="social-tooltip">Instagram</span>
+        </a>
+    </div>
+    <script src="js/like-button.js"></script>
+    <script src="js/fireworks.birthday.js" defer></script>
+</body>
+</html> 

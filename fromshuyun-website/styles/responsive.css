@@ -1,0 +1,282 @@
+/* 平板设备 */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        padding: 0.5rem;
+    }
+
+    .nav-links {
+        margin-top: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-links a {
+        margin: 0.5rem 1rem;
+    }
+
+    .hero-content h1 {
+        font-size: 3rem;
+        padding: 0 1rem;
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+        padding: 0 1rem;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .gallery-item {
+        border-radius: 10px;
+    }
+
+    .chat-container {
+        width: 300px;
+        height: 400px;
+        bottom: 1rem;
+        right: 1rem;
+    }
+
+    .wishes-content {
+        padding: 1.5rem;
+        margin: 0 1rem;
+    }
+
+    .social-links {
+        padding: 2rem 1rem;
+    }
+}
+
+/* 手机设备 */
+@media (max-width: 480px) {
+    .logo {
+        font-size: 1.5rem;
+    }
+
+    .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .nav-links a {
+        margin: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+        padding: 0 0.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+        padding: 0 0.5rem;
+    }
+
+    .gallery {
+        padding: 3rem 1rem;
+    }
+
+    .gallery h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .gallery-item {
+        border-radius: 8px;
+    }
+
+    .gallery-description {
+        font-size: 0.9rem;
+        padding: 0.8rem;
+    }
+
+    .wishes {
+        padding: 3rem 1rem;
+    }
+
+    .wishes-content {
+        padding: 1.5rem;
+        margin: 0 0.5rem;
+    }
+
+    .wishes-content h2 {
+        font-size: 2rem;
+    }
+
+    .wishes-content p {
+        font-size: 1rem;
+    }
+
+    .chat-container {
+        width: 100%;
+        height: 100%;
+        bottom: 0;
+        right: 0;
+        border-radius: 0;
+    }
+
+    .chat-header {
+        padding: 0.8rem;
+    }
+
+    .chat-header h3 {
+        font-size: 1.2rem;
+    }
+
+    .chat-input {
+        padding: 0.8rem;
+    }
+
+    .chat-input input {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .social-icon {
+        font-size: 1.5rem;
+        margin: 0 0.5rem;
+    }
+}
+
+/* 大屏幕设备 */
+@media (min-width: 1200px) {
+    .nav-container {
+        padding: 1rem 2rem;
+    }
+
+    .hero-content h1 {
+        font-size: 5rem;
+    }
+
+    .hero-content p {
+        font-size: 2rem;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 2.5rem;
+    }
+
+    .gallery-item {
+        border-radius: 20px;
+    }
+
+    .wishes-content {
+        padding: 3rem;
+    }
+
+    .wishes-content h2 {
+        font-size: 3rem;
+    }
+
+    .wishes-content p {
+        font-size: 1.2rem;
+    }
+
+    .chat-container {
+        width: 400px;
+        height: 600px;
+    }
+}
+
+/* 横屏设备 */
+@media (max-height: 600px) and (orientation: landscape) {
+    .hero {
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+
+    .hero-content p {
+        font-size: 1.5rem;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+
+    .chat-container {
+        height: 80vh;
+    }
+}
+
+/* 超小屏幕设备 */
+@media (max-width: 320px) {
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    .nav-links a {
+        font-size: 0.8rem;
+        margin: 0.3rem;
+    }
+
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero-content p {
+        font-size: 0.9rem;
+    }
+
+    .gallery h2 {
+        font-size: 1.8rem;
+    }
+
+    .wishes-content h2 {
+        font-size: 1.8rem;
+    }
+
+    .wishes-content p {
+        font-size: 0.9rem;
+    }
+
+    .social-icon {
+        font-size: 1.2rem;
+    }
+}
+
+/* 高分辨率设备 */
+@media (min-resolution: 2dppx) {
+    .gallery-item img {
+        image-rendering: -webkit-optimize-contrast;
+    }
+}
+
+/* 打印样式 */
+@media print {
+    .navbar,
+    .chat-container,
+    .chat-btn {
+        display: none;
+    }
+
+    .hero {
+        height: auto;
+        background: none;
+        color: black;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .social-links {
+        display: none;
+    }
+} 

@@ -1,0 +1,165 @@
+.like-container {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-primary);
+}
+
+.like-button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #ffffff, #f5f5f5);
+    border: none;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1),
+                -3px -3px 10px rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.like-button i {
+    font-size: 20px;
+    color: #ff4d4d;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.like-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 77, 77, 0.1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.5s ease;
+}
+
+.like-button:hover {
+    transform: scale(1.05);
+}
+
+.like-button:hover::before {
+    width: 100%;
+    height: 100%;
+}
+
+.like-button:active {
+    transform: scale(0.95);
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1),
+                -3px -3px 10px rgba(255, 255, 255, 0.8);
+}
+
+.like-count {
+    font-size: 14px;
+    color: #333;
+    background: linear-gradient(145deg, #ffffff, #f5f5f5);
+    padding: 6px 12px;
+    border-radius: 15px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1),
+                -3px -3px 10px rgba(255, 255, 255, 0.8);
+    min-width: 70px;
+    text-align: center;
+}
+
+.like-animation {
+    position: absolute;
+    pointer-events: none;
+    animation: likeFloat 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    color: #ff4d4d;
+    font-size: 18px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes likeFloat {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: translateY(-30px) scale(1.2);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-60px) scale(0.8);
+    }
+}
+
+.like-milestone {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 77, 77, 0.95);
+    color: white;
+    padding: 20px 30px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 18px;
+    animation: milestoneShow 2.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    z-index: 1001;
+    box-shadow: 0 5px 20px rgba(255, 77, 77, 0.3);
+}
+
+.like-milestone .emoji {
+    font-size: 32px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+@keyframes milestoneShow {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -30%) scale(0.8);
+    }
+    20% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+    30% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    80% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -70%) scale(0.8);
+    }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .like-container {
+        left: 15px;
+        bottom: 15px;
+    }
+
+    .like-button {
+        width: 40px;
+        height: 40px;
+    }
+
+    .like-button i {
+        font-size: 18px;
+    }
+
+    .like-count {
+        font-size: 12px;
+        padding: 4px 10px;
+        min-width: 60px;
+    }
+} 
