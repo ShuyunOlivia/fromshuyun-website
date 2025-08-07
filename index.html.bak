@@ -1,0 +1,19 @@
+index.html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>生日惊喜页面</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 五个泡泡，每个 data-link 指向不同页面 -->
+  <div class="bubble" data-link="page1.html" style="--i:18;--z:5">最大泡泡</div>
+  <div class="bubble" data-link="page2.html" style="--i:22;--z:4">第二大</div>
+  <div class="bubble" data-link="page3.html" style="--i:25;--z:3">第三个</div>
+  <div class="bubble" data-link="page4.html" style="--i:20;--z:2">第四个</div>
+  <div class="bubble" data-link="page5.html" style="--i:30;--z:1">第五个</div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我们的十年</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      overflow-x: hidden;
+    }
+    
+    .back-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 1rem;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      z-index: 1000;
+    }
+
+    .back-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.05);
+    }
+
+    h2 {
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      text-align: center;
+      margin: 50px 0;
+      font-size: 2rem;
+    }
+
+    .slideshow-container {
+      position: relative;
+      width: 80%;
+      height: 60vh;
+      margin: 0 auto;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+
+    .slide {
+      display: none;
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #000;
+    }
+
+    .slide-caption {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 20px;
+      text-align: center;
+    }
+
+    .controls {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .control-btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      margin: 0 10px;
+      border-radius: 25px;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+
+    .control-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.05);
+    }
+
+    .navigation {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.3);
+      border: none;
+      color: white;
+      padding: 15px 20px;
+      cursor: pointer;
+      font-size: 1.5rem;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+
+    .nav-prev {
+      left: 10px;
+      border-radius: 0 25px 25px 0;
+    }
+
+    .nav-next {
+      right: 10px;
+      border-radius: 25px 0 0 25px;
+    }
+
+    .navigation:hover {
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    .indicators {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .indicator {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      margin: 0 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .indicator.active {
+      background: white;
+      transform: scale(1.2);
+    }
+
+    .gallery {
+      display: none;
+      width: 90%;
+      margin: 50px auto;
+      padding: 20px 0;
+    }
+
+    .gallery.active {
+      display: block;
+    }
+
+    .gallery-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .gallery-title {
+      color: white;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .exit-gallery-btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 25px;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      font-size: 1rem;
+    }
+
+    .exit-gallery-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 768px) {
+      .slideshow-container {
+        width: 95%;
+        height: 50vh;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+        margin: 30px 0;
+      }
+
+      .navigation {
+        padding: 10px 15px;
+        font-size: 1.2rem;
+      }
+
+      .control-btn {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="index.html" class="back-btn">← 返回首页</a>
+  
+  <h2>📸 我们的十年 📸</h2>
+  
+  <!-- 幻灯片容器 -->
+  <div class="slideshow-container" id="slideshow">
+    <!-- 幻灯片将由JavaScript动态生成 -->
+    
+    <!-- 导航箭头 -->
+    <button class="navigation nav-prev" onclick="changeSlide(-1)">‹</button>
+    <button class="navigation nav-next" onclick="changeSlide(1)">›</button>
+  </div>
+
+  <!-- 控制按钮 -->
+  <div class="controls">
+    <button class="control-btn" id="playPauseBtn" onclick="togglePlayPause()">暂停</button>
+    <button class="control-btn" onclick="enterGallery()">进入画廊</button>
+  </div>
+
+  <!-- 分页指示器 -->
+  <div class="indicators" id="indicators">
+    <!-- 指示器将由JavaScript动态生成 -->
+  </div>
+
+  <!-- 画廊模式 -->
+  <div class="gallery" id="gallery">
+    <div class="gallery-header">
+      <h3 class="gallery-title">🖼️ 照片画廊 🖼️</h3>
+      <button class="exit-gallery-btn" onclick="exitGallery()">退出画廊</button>
+    </div>
+    <div class="gallery-grid" id="galleryGrid">
+      <!-- 画廊项目将由JavaScript动态生成 -->
+    </div>
+  </div>
+
+  <script>
+    // 动态维护照片列表 - 在这里增删路径即可
+    const photos = [
+      { src: 'images/photo1.jpg', caption: '我们的第一张合照' },
+      { src: 'images/photo2.jpg', caption: '美好的回忆' },
+      { src: 'images/photo3.jpg', caption: '快乐时光' },
+      { src: 'images/photo4.jpg', caption: '温馨瞬间' },
+      { src: 'images/photo5.jpg', caption: '难忘的日子' },
+      { src: 'images/photo6.jpg', caption: '珍贵记忆' },
+      { src: 'images/photo7.jpg', caption: '开心时刻' },
+      { src: 'images/photo8.jpg', caption: '美好时光' },
+      { src: 'images/photo9.jpg', caption: '特别的日子' },
+      { src: 'images/photo10.jpg', caption: '永恒的友谊' }
+    ];
+
+    let currentSlide = 0;
+    let isPlaying = true;
+    let slideInterval;
+
+    // 初始化幻灯片
+    function initSlideshow() {
+      const slideshowContainer = document.getElementById('slideshow');
+      const indicatorsContainer = document.getElementById('indicators');
+      
+      // 清空容器
+      const existingSlides = slideshowContainer.querySelectorAll('.slide');
+      const existingNavigation = slideshowContainer.querySelectorAll('.navigation');
+      existingSlides.forEach(slide => slide.remove());
+      
+      // 生成幻灯片
+      photos.forEach((photo, index) => {
+        const slide = document.createElement('div');
+        slide.className = `slide ${index === 0 ? 'active' : ''}`;
+        slide.innerHTML = `
+          <img src="${photo.src}" alt="${photo.caption}">
+          <div class="slide-caption">${photo.caption}</div>
+        `;
+        slideshowContainer.insertBefore(slide, slideshowContainer.querySelector('.nav-prev'));
+        
+        // 生成指示器
+        const indicator = document.createElement('span');
+        indicator.className = `indicator ${index === 0 ? 'active' : ''}`;
+        indicator.onclick = () => goToSlide(index);
+        indicatorsContainer.appendChild(indicator);
+      });
+    }
+
+    // 初始化画廊
+    function initGallery() {
+      const galleryGrid = document.getElementById('galleryGrid');
+      galleryGrid.innerHTML = '';
+      
+      photos.forEach(photo => {
+        const galleryItem = document.createElement('div');
+        galleryItem.className = 'gallery-item';
+        galleryItem.innerHTML = `
+          <img src="${photo.src}" alt="${photo.caption}">
+          <p>${photo.caption}</p>
+        `;
+        galleryGrid.appendChild(galleryItem);
+      });
+    }
+
+    // 显示指定幻灯片
+    function showSlide(index) {
+      const slides = document.querySelectorAll('.slide');
+      const indicators = document.querySelectorAll('.indicator');
+      
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
+      
+      indicators.forEach((indicator, i) => {
+        indicator.classList.toggle('active', i === index);
+      });
+      
+      currentSlide = index;
+    }
+
+    // 切换到下一张/上一张
+    function changeSlide(direction) {
+      const newIndex = (currentSlide + direction + photos.length) % photos.length;
+      showSlide(newIndex);
+    }
+
+    // 跳转到指定幻灯片
+    function goToSlide(index) {
+      showSlide(index);
+    }
+
+    // 自动播放
+    function startAutoplay() {
+      slideInterval = setInterval(() => {
+        changeSlide(1);
+        // 播放完毕后自动进入画廊
+        if (currentSlide === 0 && !isPlaying) {
+          enterGallery();
+        }
+      }, 3000);
+    }
+
+    // 停止自动播放
+    function stopAutoplay() {
+      clearInterval(slideInterval);
+    }
+
+    // 切换播放/暂停
+    function togglePlayPause() {
+      const btn = document.getElementById('playPauseBtn');
+      if (isPlaying) {
+        stopAutoplay();
+        btn.textContent = '播放';
+        isPlaying = false;
+      } else {
+        startAutoplay();
+        btn.textContent = '暂停';
+        isPlaying = true;
+      }
+    }
+
+    // 进入画廊模式
+    function enterGallery() {
+      stopAutoplay();
+      document.getElementById('slideshow').style.display = 'none';
+      document.querySelector('.controls').style.display = 'none';
+      document.querySelector('.indicators').style.display = 'none';
+      document.querySelector('h2').style.display = 'none';
+      document.getElementById('gallery').classList.add('active');
+    }
+
+    // 退出画廊模式
+    function exitGallery() {
+      document.getElementById('gallery').classList.remove('active');
+      document.getElementById('slideshow').style.display = 'block';
+      document.querySelector('.controls').style.display = 'block';
+      document.querySelector('.indicators').style.display = 'block';
+      document.querySelector('h2').style.display = 'block';
+      
+      // 重新开始自动播放
+      if (isPlaying) {
+        startAutoplay();
+      }
+    }
+
+    // 键盘控制
+    document.addEventListener('keydown', (e) => {
+      const gallery = document.getElementById('gallery');
+      
+      if (gallery.classList.contains('active')) {
+        // 画廊模式：上下滚动
+        if (e.key === 'ArrowDown') {
+          window.scrollBy(0, window.innerHeight * 0.8);
+        } else if (e.key === 'ArrowUp') {
+          window.scrollBy(0, -window.innerHeight * 0.8);
+        } else if (e.key === 'Escape') {
+          exitGallery();
+        }
+      } else {
+        // 幻灯片模式：左右翻页
+        if (e.key === 'ArrowLeft') {
+          changeSlide(-1);
+        } else if (e.key === 'ArrowRight') {
+          changeSlide(1);
+        } else if (e.key === ' ') {
+          e.preventDefault();
+          togglePlayPause();
+        } else if (e.key === 'Enter') {
+          enterGallery();
+        }
+      }
+    });
+
+    // 鼠标滚轮控制画廊滚动
+    document.addEventListener('wheel', (e) => {
+      const gallery = document.getElementById('gallery');
+      if (gallery.classList.contains('active')) {
+        // 画廊模式下的滚轮控制已由浏览器默认处理
+        e.preventDefault();
+        window.scrollBy(0, e.deltaY);
+      }
+    });
+
+    // 页面加载完成后初始化
+    document.addEventListener('DOMContentLoaded', () => {
+      initSlideshow();
+      initGallery();
+      startAutoplay();
+      
+      // 检测播放完一轮后自动进入画廊
+      let completedCycles = 0;
+      const originalChangeSlide = changeSlide;
+      changeSlide = function(direction) {
+        const wasLastSlide = currentSlide === photos.length - 1;
+        originalChangeSlide(direction);
+        
+        if (direction === 1 && wasLastSlide && currentSlide === 0) {
+          completedCycles++;
+          if (completedCycles >= 1) {
+            setTimeout(enterGallery, 2000);
+          }
+        }
+      };
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>彩蛋</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Serif SC', serif;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(139, 69, 19, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(160, 82, 45, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(210, 180, 140, 0.15) 0%, transparent 50%),
+                linear-gradient(135deg, #f0e68c 0%, #daa520 20%, #cd853f 40%, #daa520 60%, #f0e68c 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            /* 添加纸张纹理 */
+            background-image: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(139, 69, 19, 0.03) 2px,
+                    rgba(139, 69, 19, 0.03) 4px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(160, 82, 45, 0.03) 2px,
+                    rgba(160, 82, 45, 0.03) 4px
+                );
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* 添加一些漂浮的灰尘粒子效果 */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(139, 69, 19, 0.1) 1px, transparent 1px),
+                radial-gradient(circle at 80% 80%, rgba(160, 82, 45, 0.08) 1px, transparent 1px),
+                radial-gradient(circle at 40% 60%, rgba(210, 180, 140, 0.06) 1px, transparent 1px);
+            background-size: 200px 200px, 300px 300px, 150px 150px;
+            animation: floatDust 20s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes floatDust {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-20px) rotate(360deg); }
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(245, 245, 220, 0.9);
+            border: none;
+            color: #8b4513;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: 1px solid rgba(139, 69, 19, 0.3);
+            font-weight: 500;
+        }
+
+        .back-btn:hover {
+            background: rgba(245, 245, 220, 1);
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.2);
+        }
+
+        .surprise-content {
+            text-align: center;
+            color: #8b4513;
+            max-width: 800px;
+        }
+
+        .surprise-title {
+            font-size: 4rem;
+            font-family: 'Dancing Script', cursive;
+            margin-bottom: 20px;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .surprise-message {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .surprise-btn {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin: 20px;
+            transition: all 0.3s ease;
+            font-family: 'Noto Serif SC', serif;
+        }
+
+        .surprise-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .surprise-title {
+                font-size: 2.5rem;
+            }
+
+            .surprise-message {
+                font-size: 1.2rem;
+            }
+
+            .surprise-btn {
+                font-size: 1rem;
+                padding: 12px 25px;
+            }
+        }
+
+        /* Copyright样式 */
+        .copyright {
+            position: fixed;
+            bottom: 15px;
+            right: 20px;
+            z-index: 9999;
+            color: #888;
+            font-size: 12px;
+            font-family: Arial, sans-serif;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 4px 8px;
+            border-radius: 4px;
+            backdrop-filter: blur(10px);
+            transition: opacity 0.3s ease;
+        }
+
+        .copyright:hover {
+            opacity: 0.7;
+        }
+
+        /* 惊喜照片样式 */
+        .surprise-photos {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .surprise-photos.show {
+            display: flex;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .photo-container {
+            display: flex;
+            gap: 30px;
+            max-width: 90%;
+            max-height: 80%;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .surprise-photo {
+            max-width: 400px;
+            max-height: 500px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+            transition: transform 0.3s ease;
+            object-fit: cover;
+        }
+
+        .surprise-photo:hover {
+            transform: scale(1.05);
+        }
+
+        .close-photos {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .close-photos:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .photo-message {
+            color: white;
+            text-align: center;
+            margin-top: 30px;
+            font-size: 1.2rem;
+            max-width: 600px;
+        }
+
+        @media (max-width: 768px) {
+            .photo-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .surprise-photo {
+                max-width: 300px;
+                max-height: 400px;
+            }
+            
+            .photo-message {
+                font-size: 1rem;
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i> 返回首页
+    </a>
+    
+    <div class="surprise-content">
+        <h1 class="surprise-title">小彩蛋( ✌︎'ω')✌︎</h1>
+        <p class="surprise-message">
+            16岁生日快乐！🎂<br><br>
+            我原以为做这个网页是最困难的，<br>
+            结果整理合照花了我最长时间₍₍ ᕕ(´ ω` )ᕗ⁾⁾<br><br>
+            感谢现代科技，感谢Emma妈妈和oo妈妈的微信聊天记录<br><br>
+            祝Emma一切顺利！<br><br>
+            永远爱Emma的oo❤️<br><br>
+            点击按钮查看萌物～
+        </p>
+        <button class="surprise-btn" onclick="showSurprise()">
+            click click ξ( ✿＞◡❛)
+        </button>
+    </div>
+
+    <!-- 惊喜照片弹窗 -->
+    <div class="surprise-photos" id="surprisePhotos">
+        <button class="close-photos" onclick="closePhotos()">×</button>
+        <div class="photo-container">
+            <img src="images/83B9E25E-E9C7-46C9-BB54-D6179DB3BBB9.jpeg" alt="惊喜照片1" class="surprise-photo">
+            <img src="images/141D91B3-A8D6-469C-85D3-B7D27423E241.jpeg" alt="惊喜照片2" class="surprise-photo">
+        </div>
+        <div class="photo-message">
+            你好，Emma！<br>
+            我的名字是秘密<br>
+            希望Emma看到这些照片时会想起我们一起度过的快乐时光<br>
+            ——来自一直不愿意透露姓名的小猫
+        </div>
+    </div>
+
+    <script>
+        function showSurprise() {
+            const photosDiv = document.getElementById('surprisePhotos');
+            photosDiv.classList.add('show');
+        }
+
+        function closePhotos() {
+            const photosDiv = document.getElementById('surprisePhotos');
+            photosDiv.classList.remove('show');
+        }
+
+        // 点击背景也能关闭照片
+        document.getElementById('surprisePhotos').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePhotos();
+            }
+        });
+
+        // ESC键关闭照片
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closePhotos();
+            }
+        });
+    </script>
+
+    <!-- Copyright -->
+    <div class="copyright">© oo, 2025</div>
+</body>
+</html>

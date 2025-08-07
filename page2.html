@@ -1,0 +1,1657 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我们的十年</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', 'Microsoft YaHei', sans-serif;
+      background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 25%, #fd79a8 50%, #fdcb6e 75%, #e17055 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 20px 0;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .title {
+      font-size: 2.5rem;
+      color: #2d3436;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+      font-weight: 300;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: #636e72;
+      margin-bottom: 30px;
+    }
+
+    .back-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      color: #2d3436;
+      padding: 12px 24px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 1rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+
+    .back-btn:hover {
+      background: rgba(255, 255, 255, 1);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    /* 主题标题样式 */
+    .section-title {
+      text-align: center;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: bold;
+      color: #2d3436;
+      margin: clamp(20px, 4vw, 40px) 0 clamp(10px, 2vw, 20px) 0;
+      padding: 0;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(45deg, #fd79a8, #fdcb6e);
+      border-radius: 2px;
+    }
+
+    /* 轮播容器样式 */
+    .slideshow-container {
+      position: relative;
+      width: 100%;
+      height: 70vh;
+      min-height: 400px;
+      margin-bottom: 40px;
+      background: rgba(0,0,0,0.05);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slideshow-title {
+      text-align: center;
+      font-size: 2rem;
+      color: #2d3436;
+      margin: 20px 0;
+      font-weight: 600;
+    }
+
+    .slide {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .slide.active {
+      display: flex;
+    }
+
+    .slide img {
+      width: auto;
+      height: auto;
+      max-width: calc(100% - 40px);
+      max-height: calc(100% - 40px);
+      object-fit: contain;
+      object-position: center;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .slide img:hover {
+      transform: scale(1.02);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    }
+
+    /* 确保图片在容器内完整显示并设置最小尺寸 */
+    .slide img[src*="photo"] {
+      max-width: min(90vw, calc(100% - 40px));
+      max-height: min(60vh, calc(100% - 40px));
+      min-width: 300px;
+      min-height: 200px;
+    }
+
+    /* 控制按钮 */
+    .slideshow-controls {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      background: rgba(0,0,0,0.7);
+      padding: 10px 20px;
+      border-radius: 25px;
+      backdrop-filter: blur(10px);
+    }
+
+    .control-btn {
+      background: transparent;
+      border: 2px solid white;
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .control-btn:hover {
+      background: rgba(255,255,255,0.2);
+      transform: scale(1.1);
+    }
+
+    .play-pause-btn {
+      width: 50px;
+      height: 50px;
+      font-size: 1.2rem;
+    }
+
+    /* 分页指示器 */
+    .slide-indicators {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+    }
+
+    .indicator {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .indicator.active {
+      background: white;
+      transform: scale(1.3);
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: clamp(8px, 2vw, 16px);
+      padding: 0 20px;
+      justify-items: center;
+      margin-top: 0;
+    }
+
+    /* 单张照片卡片样式 */
+    .photo-card {
+      border: 1px solid white;
+      padding: clamp(4px, 1vw, 12px);
+      border-radius: 8px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      width: fit-content;
+      max-width: 100%;
+      margin: 0;
+    }
+
+    .photo-card img,
+    .photo-card video {
+      border-radius: 4px;
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: all 0.3s ease;
+    }
+
+    .photo-card:hover {
+      border-color: rgba(253, 121, 168, 0.3);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .photo-card:hover img,
+    .photo-card:hover video {
+      transform: scale(1.02);
+    }
+
+    .photo-description {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #636e72;
+      line-height: 1.4;
+      padding: 0 5px;
+    }
+
+    /* 照片组样式 - 扑克牌效果 */
+    .photo-group {
+      position: relative;
+      display: inline-block;
+      border: 1px solid white;
+      padding: clamp(4px, 1vw, 12px);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      width: fit-content;
+      max-width: 100%;
+      margin: 0;
+    }
+
+    .photo-group:hover {
+      border-color: rgba(253, 121, 168, 0.3);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .photo-stack {
+      position: relative;
+      width: 300px;
+      height: 280px;
+      perspective: 1000px;
+    }
+
+    .photo-stack img {
+      position: absolute;
+      border-radius: 4px;
+      transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      transform-origin: center center;
+      cursor: pointer;
+    }
+
+    /* 主图样式 */
+    .main-photo {
+      position: relative;
+      z-index: 5;
+      opacity: 1;
+      filter: none;
+      transform: translateZ(0) translate(-50%, -50%);
+      top: 50%;
+      left: 50%;
+    }
+
+    /* 虚影照片样式 - 扑克牌叠放效果 */
+    .shadow-photo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      z-index: 1;
+      opacity: 0.6;
+      filter: blur(1px);
+      transform: 
+        translate(-50%, -50%)
+        translateX(var(--offset-x, 0)) 
+        translateY(var(--offset-y, 0)) 
+        rotate(var(--rotation, 0deg))
+        scale(0.98);
+      pointer-events: none;
+    }
+
+    /* 多层虚影效果，每层稍微偏移 */
+    .shadow-photo:nth-child(2) { 
+      --offset-x: -8px; 
+      --offset-y: -6px; 
+      --rotation: -2deg; 
+      z-index: 4; 
+    }
+
+    .shadow-photo:nth-child(3) { 
+      --offset-x: 6px; 
+      --offset-y: -4px; 
+      --rotation: 1deg; 
+      z-index: 3; 
+    }
+
+    .shadow-photo:nth-child(4) { 
+      --offset-x: -4px; 
+      --offset-y: 8px; 
+      --rotation: -1deg; 
+      z-index: 2; 
+    }
+
+    .shadow-photo:nth-child(5) { 
+      --offset-x: 8px; 
+      --offset-y: 6px; 
+      --rotation: 2deg; 
+      z-index: 1; 
+    }
+
+    /* 悬停效果 */
+    .photo-stack:hover .main-photo {
+      transform: translateZ(0) translate(-50%, -50%) scale(1.05);
+    }
+
+    .photo-stack:hover .shadow-photo {
+      opacity: 0.8;
+      filter: blur(0.5px);
+    }
+
+    /* 切换按钮 */
+    .switch-indicator {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .switch-indicator:hover {
+      background: rgba(253, 121, 168, 0.8);
+      transform: scale(1.1);
+    }
+
+    .switch-indicator::before {
+      content: '→';
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .photo-counter {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+    }
+
+    /* 切换动画 */
+    .switching {
+      animation: switchPhoto 0.6s ease-in-out;
+    }
+
+    @keyframes switchPhoto {
+      0% {
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        opacity: 1;
+      }
+      50% {
+        transform: translate(-50%, -50%) scale(0.95) rotate(5deg);
+        opacity: 0.7;
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        opacity: 1;
+      }
+    }
+
+    .group-description {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #636e72;
+      line-height: 1.4;
+      padding: 0 5px;
+    }
+
+    /* 图片加载错误样式 */
+    .image-error {
+      border: 2px solid #e74c3c !important;
+      background: #ffebee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 200px;
+      color: #e74c3c;
+      font-size: 0.9rem;
+    }
+
+    .image-error::before {
+      content: '图片加载失败';
+    }
+
+    /* 画廊容器样式 */
+    .gallery-container {
+      display: none;
+      max-height: 80vh;
+      overflow-y: auto;
+      padding: 20px 0;
+    }
+
+    .gallery-container.active {
+      display: block;
+    }
+
+    /* 留声机音乐播放器样式 */
+    .music-player {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1000;
+      opacity: 0;
+      transform: scale(0);
+      transition: all 0.5s ease;
+    }
+
+    .gallery-container.active .music-player {
+      opacity: 1;
+      transform: scale(1);
+      transition-delay: 1s;
+    }
+
+    .gramophone {
+      width: 120px;
+      height: 120px;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .gramophone-base {
+      width: 100%;
+      height: 60px;
+      background: linear-gradient(145deg, #8B4513, #A0522D);
+      border-radius: 10px 10px 20px 20px;
+      position: absolute;
+      bottom: 0;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .vinyl-record {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(45deg, #1a1a1a, #333);
+      border-radius: 50%;
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: transform 0.3s ease;
+      box-shadow: 
+        0 2px 10px rgba(0, 0, 0, 0.5),
+        inset 0 2px 5px rgba(255, 255, 255, 0.1);
+    }
+
+    .vinyl-record.spinning {
+      animation: spin 3s linear infinite;
+    }
+
+    @keyframes spin {
+      from { transform: translateX(-50%) rotate(0deg); }
+      to { transform: translateX(-50%) rotate(360deg); }
+    }
+
+    .record-center {
+      width: 20px;
+      height: 20px;
+      background: #8B4513;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    .record-grooves {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .record-grooves::before,
+    .record-grooves::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .record-grooves::before {
+      width: 50px;
+      height: 50px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .record-grooves::after {
+      width: 30px;
+      height: 30px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .gramophone-arm {
+      width: 3px;
+      height: 40px;
+      background: linear-gradient(to bottom, #8B4513, #A0522D);
+      position: absolute;
+      top: 20px;
+      right: 10px;
+      transform-origin: bottom center;
+      transition: transform 0.5s ease;
+      border-radius: 2px;
+    }
+
+    .gramophone-arm::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: #8B4513;
+      border-radius: 50%;
+      position: absolute;
+      top: -4px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .gramophone-arm.playing {
+      transform: rotate(-25deg);
+    }
+
+    .gramophone-horn {
+      width: 25px;
+      height: 25px;
+      background: linear-gradient(145deg, #CD853F, #8B4513);
+      border-radius: 50% 50% 50% 0;
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      transform: rotate(45deg);
+      box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    .music-controls {
+      position: absolute;
+      bottom: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .gramophone:hover .music-controls {
+      opacity: 1;
+    }
+
+    .play-pause-btn {
+      background: rgba(139, 69, 19, 0.9);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .play-pause-btn:hover {
+      background: rgba(139, 69, 19, 1);
+      transform: scale(1.1);
+    }
+
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+      .title {
+        font-size: 2rem;
+      }
+
+      .slideshow-container {
+        height: 60vh;
+        min-height: 350px;
+      }
+
+      .slideshow-title {
+        font-size: 1.5rem;
+        margin: 15px 0;
+      }
+
+      .slide {
+        padding: 15px;
+      }
+
+      .slide img[src*="photo"] {
+        max-width: min(85vw, calc(100% - 30px));
+        max-height: min(50vh, calc(100% - 30px));
+        min-width: 250px;
+        min-height: 180px;
+      }
+
+      .slideshow-controls {
+        bottom: 15px;
+        padding: 8px 15px;
+      }
+
+      .control-btn {
+        width: 35px;
+        height: 35px;
+      }
+
+      .play-pause-btn {
+        width: 45px;
+        height: 45px;
+      }
+
+      .photo-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        padding: 0 10px;
+      }
+
+      .photo-stack {
+        width: 250px;
+        height: 220px;
+      }
+
+      .back-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .slideshow-container {
+        height: 50vh;
+        min-height: 300px;
+        margin-bottom: 30px;
+      }
+
+      .slideshow-title {
+        font-size: 1.3rem;
+        margin: 10px 0;
+      }
+
+      .slide {
+        padding: 10px;
+      }
+
+      .slide img[src*="photo"] {
+        max-width: min(80vw, calc(100% - 20px));
+        max-height: min(40vh, calc(100% - 20px));
+        min-width: 200px;
+        min-height: 150px;
+      }
+
+      .slideshow-controls {
+        bottom: 10px;
+        padding: 6px 12px;
+        gap: 10px;
+      }
+
+      .control-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+      }
+
+      .play-pause-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+      }
+
+      .slide-indicators {
+        top: 15px;
+        gap: 6px;
+      }
+
+      .indicator {
+        width: 8px;
+        height: 8px;
+      }
+
+      .photo-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
+      
+      .photo-stack {
+        width: 200px;
+        height: 200px;
+      }
+
+      .photo-description,
+      .group-description {
+        font-size: 0.8rem;
+      }
+    }
+
+    @media (max-width: 320px) {
+      .slideshow-container {
+        height: 45vh;
+        min-height: 250px;
+      }
+
+      .slide img[src*="photo"] {
+        max-width: min(75vw, calc(100% - 20px));
+        max-height: min(35vh, calc(100% - 20px));
+        min-width: 180px;
+        min-height: 120px;
+      }
+    }
+
+    /* Copyright样式 */
+    .copyright {
+      position: fixed;
+      bottom: 15px;
+      right: 20px;
+      z-index: 9999;
+      color: #888;
+      font-size: 12px;
+      font-family: Arial, sans-serif;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 4px 8px;
+      border-radius: 4px;
+      backdrop-filter: blur(10px);
+      transition: opacity 0.3s ease;
+    }
+
+    .copyright:hover {
+      opacity: 0.7;
+    }
+
+    /* 加载动画 */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .photo-card,
+    .photo-group {
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .photo-card:nth-child(1),
+    .photo-group:nth-child(1) { animation-delay: 0.15s; }
+    .photo-card:nth-child(2),
+    .photo-group:nth-child(2) { animation-delay: 0.15s; }
+    .photo-card:nth-child(3),
+    .photo-group:nth-child(3) { animation-delay: 0.15s; }
+    .photo-card:nth-child(4),
+    .photo-group:nth-child(4) { animation-delay: 0.2s; }
+    .photo-card:nth-child(5),
+    .photo-group:nth-child(5) { animation-delay: 0.25s; }
+  </style>
+</head>
+<body>
+  <button class="back-btn" onclick="window.location.href='index.html'">
+    ← 返回首页
+  </button>
+
+  <div class="container">
+    <div class="header">
+      <h1 class="title">📸 我们多多多的照片</h1>
+      <p class="subtitle">十年，拾光（正经版）</p>
+    </div>
+
+    <!-- 轮播容器 -->
+    <div id="slideshow-section">
+      <div class="slideshow-container">
+        <h2 class="slideshow-title">我们的十年</h2>
+        <div class="slide-indicators" id="indicators">
+          <!-- 指示器将由JavaScript生成 -->
+        </div>
+        
+        <div id="slides">
+          <!-- 幻灯片将由JavaScript生成 -->
+        </div>
+        
+        <div class="slideshow-controls">
+          <button class="control-btn" id="prevBtn">‹</button>
+          <button class="control-btn play-pause-btn" id="playPauseBtn">⏸</button>
+          <button class="control-btn" id="nextBtn">›</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 画廊容器 -->
+    <div class="gallery-container" id="gallery-container">
+      <div id="content-container">
+        <!-- 内容将由JavaScript生成 -->
+      </div>
+      
+      <!-- 留声机音乐播放器 -->
+      <div class="music-player" id="musicPlayer">
+        <div class="gramophone">
+          <div class="gramophone-base"></div>
+          <div class="gramophone-arm" id="gramophoneArm"></div>
+          <div class="vinyl-record" id="vinylRecord">
+            <div class="record-center"></div>
+            <div class="record-grooves"></div>
+          </div>
+          <div class="gramophone-horn"></div>
+        </div>
+        <audio id="audioPlayer" preload="metadata">
+          <source src="music/十年 - 陈奕迅(12).mp3" type="audio/mpeg">
+        </audio>
+        <div class="music-controls">
+          <button class="play-pause-btn" id="playPauseBtn">▶</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 轮播照片列表 - 动态维护
+    const slideshowPhotos = [
+      './images/photo1.jpg',
+      './images/photo2.jpg', 
+      './images/photo3.jpg',
+      './images/photo4.jpg',
+      './images/photo5.jpg',
+      './images/photo6.jpg',
+      './images/photo7.jpg',
+      './images/photo8.jpg',
+      './images/photo9.jpg',
+      './images/photo10.jpg'
+    ];
+
+    // 轮播相关变量
+    let currentSlide = 0;
+    let isPlaying = true;
+    let slideInterval;
+
+    // 完整的照片数据 - 按School, Play, 杂顺序分组
+    const photoSections = {
+      'School': [
+        {
+          type: 'group',
+          name: '入学',
+          photos: [
+            './images/school-01-orientation-1.jpg',
+            './images/school-03-orientation-2.jpg'
+          ],
+          description: 'Where we first metヽ( ° ▽°)ノ'
+        },
+        {
+          type: 'single',
+          photo: './images/school-03-fieldtrip.jpg',
+          description: '(๑´ڡ`๑)'
+        },
+        {
+          type: 'group',
+          name: '科学馆',
+          photos: [
+            './images/school-06-science-museum-01.jpg',
+            './images/school-07-science-museum-02.jpg'
+          ],
+          description: '秋游班级合照中的我们'
+        },
+        {
+          type: 'group',
+          name: '一年级',
+          photos: [
+            './images/school-04-1st grade-01.jpg',
+            './images/school-05-1st grade-02.jpg'
+          ],
+          description: '班级合照中的我们'
+        },
+        {
+          type: 'single',
+          photo: './images/school-08-eye-contact.jpg',
+          description: 'eye contact(ゝ∀･)⌒☆'
+        },
+        {
+          type: 'single',
+          photo: './images/school-09-sports-day.jpg',
+          description: '运动会玩bobobing'
+        },
+        {
+          type: 'single',
+          photo: './images/school-10-culture-day.jpg',
+          description: '中国文化周'
+        },
+        {
+          type: 'group',
+          name: '文化日',
+          photos: [
+            './images/school-11-culture-picture-01.jpg',
+            './images/school-12-culture-picture-02.jpg'
+          ],
+          description: '古装的我们'
+        },
+        {
+          type: 'group',
+          name: '快乐时光',
+          photos: [
+            './images/school-13-happy-picture-01.jpg',
+            './images/school-13-happy-picture-02.jpg',
+            './images/school-14-happy-picture-03.jpg'
+          ],
+          description: '我们当时在干啥 ‾◡◝'
+        },
+        {
+          type: 'single',
+          photo: './images/school-15-grown-up-picture.jpg',
+          description: '与xhw的最后合照'
+        }
+      ],
+      'Play': [
+        {
+          type: 'group',
+          name: '做蛋糕',
+          photos: [
+            './images/play-01-cake-making-01.jpg',
+            './images/play-02-cake-making-02.jpg'
+          ],
+          description: '我没吃到这次的蛋糕：（'
+        },
+        {
+          type: 'single',
+          photo: './images/play-03-cake-making-video.MOV',
+          description: 'video~'
+        },
+        {
+          type: 'group',
+          name: '游泳',
+          photos: [
+            './images/play-04-swimming-01.jpg',
+            './images/play-05-swimming-02.jpg',
+            './images/play-06-swimming-03.jpg'
+          ],
+          description: '游泳(≖ᴗ≖๑)'
+        },
+        {
+          type: 'single',
+          photo: './images/play-07-disney.jpg',
+          description: '迪士尼'
+        },
+        {
+          type: 'single',
+          photo: './images/play-08-scary-house.jpg',
+          description: '鬼屋-电锯惊魂'
+        },
+        {
+          type: 'group',
+          name: 'sleepover',
+          photos: [
+            './images/play-09-sleep-over-01.jpg',
+            './images/play-10-sleep-over-02.jpg',
+            './images/play-11-sleep-over-03.jpg'
+          ],
+          description: '第一次在我家sleepover'
+        },
+        {
+          type: 'single',
+          photo: './images/play-12-video-games.jpg',
+          description: 'dwrg，启动！'
+        },
+        {
+          type: 'single',
+          photo: './images/play-13-beads.jpg',
+          description: '手串'
+        },
+        {
+          type: 'single',
+          photo: './images/play-14-fireworks.jpg',
+          description: '新年看烟花'
+        },
+        {
+          type: 'group',
+          name: '生日',
+          photos: [
+            './images/play-15-my-birthday-01.jpg',
+            './images/play-16-my-birthday-02.jpg',
+            './images/play-17-my-birthday-03.jpg',
+            './images/play-18-my-birthday-04.jpg'
+          ],
+          description: '我的生日（）'
+        },
+        {
+          type: 'group',
+          name: '长城自拍',
+          photos: [
+            './images/play-19-great-wall-selfie-01.jpg',
+            './images/play-20-great-wall-selfie-02.jpg',
+            './images/play-21-great-wall-selfie-03.jpg'
+          ],
+          description: '长城-自拍们'
+        },
+        {
+          type: 'group',
+          name: '长城游览',
+          photos: [
+            './images/play-22-great-wall-01.jpg',
+            './images/play-24-great-wall-02.jpg',
+            './images/play-25-great-wall-03.jpg'
+          ],
+          description: '长城-合照们'
+        },
+        {
+          type: 'group',
+          name: '颐和园',
+          photos: [
+            './images/play-25-summer-palace-01.jpg',
+            './images/play-26-summer-palace-02.jpg'
+          ],
+          description: '我咋扎着苹果头'
+        },
+        {
+          type: 'single',
+          photo: './images/play-27-with-musician.jpg',
+          description: '和我妈朋友在北京吃饭'
+        },
+        {
+          type: 'single',
+          photo: './images/play-28-in-car-video-game.jpg',
+          description: '应该又是一场dwrg< (￣︶￣)>'
+        },
+        {
+          type: 'single',
+          photo: './images/play-29-swimming-pool-eating.jpg',
+          description: '在吃什么（？）'
+        },
+        {
+          type: 'single',
+          photo: './images/play-30-seeing-fireworks.jpg',
+          description: '第二年⁽⁽ଘ( ˙꒳˙ )ଓ⁾⁾'
+        },
+        {
+          type: 'single',
+          photo: './images/play-31-strawberries.jpg',
+          description: '摘草莓'
+        },
+        {
+          type: 'single',
+          photo: './images/play-32-drawing-in-my-home.jpg',
+          description: '这幅画现在还在我家没画完'
+        },
+        {
+          type: 'single',
+          photo: './images/play-33-scooter.jpg',
+          description: '剪刀车ε≡ﾍ( ´∀`)ﾉ'
+        },
+        {
+          type: 'single',
+          photo: './images/play-34-double-photo-at-chongming.jpg',
+          description: '第不知道多少年(◕ܫ◕)'
+        },
+        {
+          type: 'single',
+          photo: './images/play-35-danville-easter.jpg',
+          description: '今年的Easter'
+        },
+        {
+          type: 'single',
+          photo: './images/play-36-danville.jpg',
+          description: '惬意啊'
+        }
+      ],
+      '杂': [
+        {
+          type: 'group',
+          name: '穿耳洞',
+          photos: [
+            './images/杂-01-piercing-01.jpg',
+            './images/杂-02-piercing-02.jpg',
+            './images/杂-03-piercing-03.jpg'
+          ],
+          description: '我们一起打耳洞'
+        },
+        {
+          type: 'single',
+          photo: './images/杂-04-piercing-video.MOV',
+          description: '打耳洞高清视频无码( º﹃º )'
+        },
+        {
+          type: 'group',
+          name: '背影',
+          photos: [
+            './images/杂-05-back-01.jpg',
+            './images/杂-06-back-02.jpg',
+            './images/杂-07-back-03.jpg',
+            './images/杂-08-back-04.jpg'
+          ],
+          description: '我们的背影'
+        },
+        {
+          type: 'single',
+          photo: './images/杂-09-车里的背影.jpg',
+          description: '摄影师：oo'
+        },
+        {
+          type: 'single',
+          photo: './images/杂-10-dumplings.jpg',
+          description: '包馄饨'
+        },
+        {
+          type: 'single',
+          photo: './images/杂-11-walk.jpg',
+          description: '散步'
+        },
+        {
+          type: 'single',
+          photo: './images/杂-12-phone-addiction-haha.jpg',
+          description: 'phone addiction haha'
+        },
+        {
+          type: 'single',
+          photo: './images/杂-13-look-at-u.jpg',
+          description: 'look at u'
+        },
+        {
+          type: 'single',
+          photo: './images/杂-14-happy-moment-at-danville.jpg',
+          description: 'Danville happy moments'
+        }
+      ]
+    };
+
+    // 初始化轮播
+    function initSlideshow() {
+      const slidesContainer = document.getElementById('slides');
+      const indicatorsContainer = document.getElementById('indicators');
+      
+      // 创建幻灯片
+      slideshowPhotos.forEach((photo, index) => {
+        // 创建幻灯片
+        const slide = document.createElement('div');
+        slide.className = `slide ${index === 0 ? 'active' : ''}`;
+        
+        const img = document.createElement('img');
+        img.src = photo;
+        img.alt = `轮播图片 ${index + 1}`;
+        img.loading = index < 2 ? 'eager' : 'lazy'; // 前两张立即加载
+        
+        // 图片加载完成后确保正确显示
+        img.onload = function() {
+          console.log(`轮播图片 ${index + 1} 加载成功`);
+        };
+        
+        img.onerror = function() {
+          console.error(`轮播图片 ${index + 1} 加载失败: ${photo}`);
+          this.style.background = '#f0f0f0';
+          this.style.border = '2px dashed #ccc';
+        };
+        
+        slide.appendChild(img);
+        slidesContainer.appendChild(slide);
+        
+        // 创建指示器
+        const indicator = document.createElement('div');
+        indicator.className = `indicator ${index === 0 ? 'active' : ''}`;
+        indicator.onclick = () => goToSlide(index);
+        indicatorsContainer.appendChild(indicator);
+      });
+      
+      // 开始自动播放
+      startSlideshow();
+    }
+
+    // 切换到指定幻灯片
+    function goToSlide(index) {
+      const slides = document.querySelectorAll('.slide');
+      const indicators = document.querySelectorAll('.indicator');
+      
+      // 移除当前active类
+      slides[currentSlide].classList.remove('active');
+      indicators[currentSlide].classList.remove('active');
+      
+      // 设置新的当前幻灯片
+      currentSlide = index;
+      slides[currentSlide].classList.add('active');
+      indicators[currentSlide].classList.add('active');
+    }
+
+    // 下一张幻灯片
+    function nextSlide() {
+      const nextIndex = (currentSlide + 1) % slideshowPhotos.length;
+      
+      // 如果到了最后一张，播放完毕后切换到画廊
+      if (currentSlide === slideshowPhotos.length - 1) {
+        setTimeout(() => {
+          switchToGallery();
+        }, 3000);
+        return;
+      }
+      
+      goToSlide(nextIndex);
+    }
+
+    // 上一张幻灯片
+    function prevSlide() {
+      const prevIndex = (currentSlide - 1 + slideshowPhotos.length) % slideshowPhotos.length;
+      goToSlide(prevIndex);
+    }
+
+    // 开始轮播
+    function startSlideshow() {
+      slideInterval = setInterval(nextSlide, 3000);
+      isPlaying = true;
+      document.getElementById('playPauseBtn').textContent = '⏸';
+    }
+
+    // 暂停轮播
+    function pauseSlideshow() {
+      clearInterval(slideInterval);
+      isPlaying = false;
+      document.getElementById('playPauseBtn').textContent = '▶';
+    }
+
+    // 切换播放/暂停
+    function togglePlayPause() {
+      if (isPlaying) {
+        pauseSlideshow();
+      } else {
+        startSlideshow();
+      }
+    }
+
+    // 切换到画廊
+    function switchToGallery() {
+      pauseSlideshow();
+      document.getElementById('slideshow-section').style.display = 'none';
+      document.getElementById('gallery-container').classList.add('active');
+    }
+
+    // 创建单张照片卡片
+    function createPhotoCard(data) {
+      const card = document.createElement('div');
+      card.className = 'photo-card';
+      
+      let mediaElement;
+      
+      // 判断是否为视频文件
+      if (data.photo.toLowerCase().endsWith('.mov') || data.photo.toLowerCase().endsWith('.mp4')) {
+        mediaElement = document.createElement('video');
+        mediaElement.controls = true;
+        mediaElement.muted = true;
+        mediaElement.preload = 'metadata';
+        mediaElement.className = 'video-element';
+        
+        const source = document.createElement('source');
+        source.src = data.photo;
+        source.type = 'video/mp4';
+        mediaElement.appendChild(source);
+      } else {
+        mediaElement = document.createElement('img');
+        mediaElement.src = data.photo;
+        mediaElement.alt = '回忆照片';
+        mediaElement.loading = 'lazy';
+      }
+      
+      const description = document.createElement('div');
+      description.className = 'photo-description';
+      description.textContent = data.description;
+      
+      card.appendChild(mediaElement);
+      card.appendChild(description);
+      
+      return card;
+    }
+
+    // 创建照片组
+    function createPhotoGroup(data) {
+      const group = document.createElement('div');
+      group.className = 'photo-group';
+      
+      const photoStack = document.createElement('div');
+      photoStack.className = 'photo-stack';
+      
+      let currentMainIndex = 0;
+      
+      // 创建照片元素
+      data.photos.forEach((photoSrc, index) => {
+        const img = document.createElement('img');
+        img.src = photoSrc;
+        img.alt = data.name;
+        img.loading = 'lazy';
+        
+        // 设置初始样式类
+        if (index === 0) {
+          img.className = 'main-photo';
+        } else {
+          img.className = 'shadow-photo';
+        }
+        
+        photoStack.appendChild(img);
+      });
+      
+      // 切换按钮
+      const switchBtn = document.createElement('button');
+      switchBtn.className = 'switch-indicator';
+      switchBtn.onclick = (e) => {
+        e.stopPropagation();
+        switchToNext();
+      };
+      
+      // 计数器
+      const counter = document.createElement('div');
+      counter.className = 'photo-counter';
+      counter.textContent = `1/${data.photos.length}`;
+      
+      // 切换到下一张的函数
+      function switchToNext() {
+        const nextIndex = (currentMainIndex + 1) % data.photos.length;
+        const mainPhoto = photoStack.querySelector('.main-photo');
+        
+        // 添加切换动画
+        mainPhoto.classList.add('switching');
+        
+        setTimeout(() => {
+          // 重置所有照片样式
+          const allImages = photoStack.querySelectorAll('img');
+          allImages.forEach((image, i) => {
+            image.classList.remove('main-photo', 'shadow-photo', 'switching');
+            
+            if (i === nextIndex) {
+              image.className = 'main-photo';
+            } else {
+              image.className = 'shadow-photo';
+            }
+          });
+          
+          currentMainIndex = nextIndex;
+          counter.textContent = `${currentMainIndex + 1}/${data.photos.length}`;
+        }, 300);
+      }
+      
+      // 主图点击切换
+      photoStack.addEventListener('click', (e) => {
+        if (e.target.classList.contains('main-photo')) {
+          switchToNext();
+        }
+      });
+      
+      // 键盘支持
+      photoStack.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === ' ') {
+          e.preventDefault();
+          switchToNext();
+        } else if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          const prevIndex = (currentMainIndex - 1 + data.photos.length) % data.photos.length;
+          currentMainIndex = prevIndex - 1; // 减1是因为switchToNext会加1
+          switchToNext();
+        }
+      });
+      
+      photoStack.tabIndex = 0; // 使其可获得焦点
+      
+      photoStack.appendChild(switchBtn);
+      photoStack.appendChild(counter);
+      
+      // 添加描述
+      const description = document.createElement('div');
+      description.className = 'group-description';
+      description.textContent = data.description;
+      
+      group.appendChild(photoStack);
+      group.appendChild(description);
+      
+      return group;
+    }
+
+    // 初始化画廊
+    function initGallery() {
+      const container = document.getElementById('content-container');
+      
+      Object.entries(photoSections).forEach(([sectionName, items]) => {
+        // 创建分类标题
+        const sectionTitle = document.createElement('h2');
+        sectionTitle.className = 'section-title';
+        sectionTitle.textContent = sectionName;
+        container.appendChild(sectionTitle);
+        
+        // 创建照片网格
+        const grid = document.createElement('div');
+        grid.className = 'photo-grid';
+        
+        items.forEach((data) => {
+          let element;
+          if (data.type === 'group') {
+            element = createPhotoGroup(data);
+          } else {
+            element = createPhotoCard(data);
+          }
+          grid.appendChild(element);
+        });
+        
+        container.appendChild(grid);
+      });
+    }
+
+    // 图片加载状态检查和错误处理
+    function setupImageErrorHandling() {
+      document.querySelectorAll('img').forEach((img, index) => {
+        img.onerror = function() {
+          console.error(`图片加载失败: ${this.src}`);
+          this.classList.add('image-error');
+          this.style.border = '2px solid #e74c3c';
+          this.style.background = '#ffebee';
+          this.style.minHeight = '200px';
+        };
+        
+        img.onload = function() {
+          console.log(`图片加载成功: ${this.src}`);
+        };
+      });
+    }
+
+    // 懒加载图片
+    function initLazyLoading() {
+      const images = document.querySelectorAll('img[loading="lazy"]');
+      
+      if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const img = entry.target;
+              observer.unobserve(img);
+            }
+          });
+        });
+
+        images.forEach(img => imageObserver.observe(img));
+      }
+    }
+
+    // 全局键盘控制
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        window.location.href = 'index.html';
+      }
+    });
+
+    // 验证修复的图片路径
+    function verifyProblematicImages() {
+      const problematicImages = [
+        'school-04-1st grade-01.jpg',
+        'school-05-1st grade-02.jpg', 
+        'play-24-great-wall-02.jpg'
+      ];
+
+      problematicImages.forEach(filename => {
+        const img = new Image();
+        img.onload = () => console.log(`✅ ${filename} 加载成功`);
+        img.onerror = () => console.error(`❌ ${filename} 仍然加载失败`);
+        img.src = `./images/${filename}`;
+      });
+    }
+
+    // 设置事件监听器
+    function setupEventListeners() {
+      // 轮播控制按钮
+      document.getElementById('prevBtn').onclick = prevSlide;
+      document.getElementById('nextBtn').onclick = nextSlide;
+      document.getElementById('playPauseBtn').onclick = togglePlayPause;
+      
+      // 键盘控制
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          window.location.href = 'index.html';
+        } else if (e.key === 'ArrowLeft') {
+          prevSlide();
+        } else if (e.key === 'ArrowRight') {
+          nextSlide();
+        } else if (e.key === ' ') {
+          e.preventDefault();
+          togglePlayPause();
+        }
+      });
+      
+      // 画廊滚轮控制
+      const galleryContainer = document.getElementById('gallery-container');
+      galleryContainer.addEventListener('wheel', (e) => {
+        if (galleryContainer.classList.contains('active')) {
+          // 允许默认滚动行为
+        }
+      });
+    }
+
+    // 页面加载完成后初始化
+    document.addEventListener('DOMContentLoaded', () => {
+      initSlideshow();
+      initGallery();
+      setupEventListeners();
+      setTimeout(() => {
+        setupImageErrorHandling();
+        initLazyLoading();
+        verifyProblematicImages();
+      }, 500);
+    });
+
+    // 音乐播放器功能初始化
+    function initMusicPlayer() {
+      const audioPlayer = document.getElementById('audioPlayer');
+      const playPauseBtn = document.getElementById('playPauseBtn');
+      const vinylRecord = document.getElementById('vinylRecord');
+      const gramophoneArm = document.getElementById('gramophoneArm');
+      let isPlaying = false;
+
+      if (!audioPlayer || !playPauseBtn || !vinylRecord || !gramophoneArm) {
+        console.log('音乐播放器元素未找到');
+        return;
+      }
+
+      // 播放/暂停按钮点击事件
+      playPauseBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        toggleMusic();
+      });
+
+      // 留声机点击事件
+      document.querySelector('.gramophone').addEventListener('click', function() {
+        toggleMusic();
+      });
+
+      function toggleMusic() {
+        if (isPlaying) {
+          pauseMusic();
+        } else {
+          playMusic();
+        }
+      }
+
+      function playMusic() {
+        audioPlayer.play().then(() => {
+          isPlaying = true;
+          playPauseBtn.textContent = '⏸';
+          vinylRecord.classList.add('spinning');
+          gramophoneArm.classList.add('playing');
+        }).catch(error => {
+          console.log('音乐播放失败:', error);
+          // 如果自动播放被阻止，可以显示提示
+        });
+      }
+
+      function pauseMusic() {
+        audioPlayer.pause();
+        isPlaying = false;
+        playPauseBtn.textContent = '▶';
+        vinylRecord.classList.remove('spinning');
+        gramophoneArm.classList.remove('playing');
+      }
+
+      // 音乐结束时重置状态
+      audioPlayer.addEventListener('ended', function() {
+        isPlaying = false;
+        playPauseBtn.textContent = '▶';
+        vinylRecord.classList.remove('spinning');
+        gramophoneArm.classList.remove('playing');
+      });
+
+      // 音乐加载错误处理
+      audioPlayer.addEventListener('error', function(e) {
+        console.log('音乐文件加载错误:', e);
+      });
+    }
+
+    // 在页面加载完成后初始化音乐播放器
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(() => {
+        initMusicPlayer();
+      }, 1000);
+    });
+  </script>
+
+  <!-- Copyright -->
+  <div class="copyright">© oo, 2025</div>
+</body>
+</html>

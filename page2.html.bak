@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我们的合照</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Serif SC', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 80px 20px 20px;
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            z-index: 1000;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .page-title {
+            text-align: center;
+            color: white;
+            font-size: 3rem;
+            font-family: 'Dancing Script', cursive;
+            margin-bottom: 40px;
+        }
+
+        .photo-wall {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .photo-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .photo-item:hover {
+            transform: scale(1.05);
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .photo-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 15px;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .photo-wall {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 15px;
+            }
+
+            .photo-item img {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i> 返回首页
+    </a>
+    
+    <h1 class="page-title">📸 我们的合照 📸</h1>
+    
+    <div class="photo-wall">
+        <div class="photo-item">
+            <img src="images/images_family/我和媽媽/我和媽媽在張家港香山.jpg" alt="Emma美好回忆1">
+            <div class="photo-caption">和Emma的美好时光</div>
+        </div>
+        <div class="photo-item">
+            <img src="images/images_family/我和姐姐/我和姐姐在ktv.jpg" alt="Emma美好回忆2">
+            <div class="photo-caption">和Emma的快乐瞬间</div>
+        </div>
+        <div class="photo-item">
+            <img src="images/images_family/我們三口/2025張家港春節.jpg" alt="Emma美好回忆3">
+            <div class="photo-caption">和Emma的温馨回忆</div>
+        </div>
+        <div class="photo-item">
+            <img src="images/images_family/我和媽媽/我和媽媽在日本.jpg" alt="Emma美好回忆4">
+            <div class="photo-caption">和Emma的珍贵友谊</div>
+        </div>
+        <div class="photo-item">
+            <img src="images/images_family/我和姐姐/我和姐姐在mt diablo山.jpg" alt="Emma美好回忆5">
+            <div class="photo-caption">和Emma的难忘旅程</div>
+        </div>
+        <div class="photo-item">
+            <img src="images/images_family/我們三口/mt diablo夕陽.jpg" alt="Emma美好回忆6">
+            <div class="photo-caption">和Emma的美丽风景</div>
+        </div>
+        <div class="photo-item">
+            <img src="images/images_family/我和媽媽/我和媽媽在來舊金山的飛機上.jpg" alt="Emma美好回忆7">
+            <div class="photo-caption">和Emma的旅途记忆</div>
+        </div>
+        <div class="photo-item">
+            <img src="images/images_family/我和姐姐/我和姐姐在機場.jpg" alt="Emma美好回忆8">
+            <div class="photo-caption">和Emma的机场时光</div>
+        </div>
+    </div>
+</body>
+</html>

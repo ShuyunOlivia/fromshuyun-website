@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acknowledgement</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Serif SC', serif;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(160, 82, 45, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(210, 180, 140, 0.1) 0%, transparent 50%),
+                linear-gradient(135deg, #f5f5dc 0%, #f0e68c 25%, #daa520 50%, #cd853f 75%, #d2b48c 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            /* 添加纸张纹理 */
+            background-image: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(139, 69, 19, 0.03) 2px,
+                    rgba(139, 69, 19, 0.03) 4px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(160, 82, 45, 0.03) 2px,
+                    rgba(160, 82, 45, 0.03) 4px
+                );
+        }
+
+        /* 添加一些漂浮的灰尘粒子效果 */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(139, 69, 19, 0.1) 1px, transparent 1px),
+                radial-gradient(circle at 80% 80%, rgba(160, 82, 45, 0.08) 1px, transparent 1px),
+                radial-gradient(circle at 40% 60%, rgba(210, 180, 140, 0.06) 1px, transparent 1px);
+            background-size: 200px 200px, 300px 300px, 150px 150px;
+            animation: floatDust 20s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes floatDust {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-20px) rotate(360deg); }
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(245, 245, 220, 0.9);
+            border: 2px solid rgba(139, 69, 19, 0.3);
+            color: #8b4513;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.2);
+        }
+
+        .back-btn:hover {
+            background: rgba(245, 245, 220, 1);
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4);
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 左侧：特别感谢Emma */
+        .left-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-right: 2px solid rgba(139, 69, 19, 0.2);
+        }
+
+        .emma-thanks {
+            text-align: center;
+            color: #8b4513;
+            max-width: 500px;
+        }
+
+        .emma-title {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            font-family: 'Dancing Script', cursive;
+            color: #2c3e50;
+        }
+
+        .emma-message {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            text-indent: 2em;
+        }
+
+        .heart-animation {
+            font-size: 3rem;
+            color: #e74c3c;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            margin: 30px 0;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* 星星互动机制 */
+        .star-interaction-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100px;
+            height: 100px;
+            background: rgba(245, 245, 220, 0.95);
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(139, 69, 19, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .star-interaction-container:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4);
+        }
+
+        .star-button {
+            font-size: 36px;
+            margin-bottom: 2px;
+            transition: all 0.3s ease;
+            animation: starTwinkle 2s ease-in-out infinite;
+        }
+
+        .star-button.clicked {
+            animation: starBurst 0.8s ease;
+        }
+
+        @keyframes starTwinkle {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+            25% { transform: scale(1.1) rotate(5deg); opacity: 0.8; }
+            50% { transform: scale(1.05) rotate(-5deg); opacity: 1; }
+            75% { transform: scale(1.1) rotate(3deg); opacity: 0.9; }
+        }
+
+        @keyframes starBurst {
+            0% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.4) rotate(90deg); }
+            50% { transform: scale(1.2) rotate(180deg); }
+            75% { transform: scale(1.3) rotate(270deg); }
+            100% { transform: scale(1) rotate(360deg); }
+        }
+
+        .star-count {
+            font-size: 16px;
+            font-weight: bold;
+            color: #8b4513;
+            text-align: center;
+            line-height: 1;
+        }
+
+        /* 飘出的星星动画 */
+        .floating-star {
+            position: fixed;
+            font-size: 24px;
+            color: #ffd700;
+            pointer-events: none;
+            z-index: 3000;
+            animation: floatUpStar 3s ease-out forwards;
+        }
+
+        @keyframes floatUpStar {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1) rotate(0deg);
+            }
+            50% {
+                opacity: 0.8;
+                transform: translateY(-50px) scale(1.3) rotate(180deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-120px) scale(1.8) rotate(360deg);
+            }
+        }
+
+        /* 右侧：致谢 */
+        .right-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding: 40px;
+            overflow-y: auto;
+            max-height: 100vh;
+        }
+
+        .thanks-section {
+            color: #8b4513;
+            margin-bottom: 40px;
+        }
+
+        .thanks-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-family: 'Dancing Script', cursive;
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        .thanks-list {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px 20px;
+        }
+
+        .thanks-item {
+            margin-bottom: 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .thanks-item::before {
+            content: "✨";
+            position: absolute;
+            left: 0;
+            color: #daa520;
+        }
+
+        .contact-section {
+            color: #8b4513;
+        }
+
+        .contact-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-family: 'Dancing Script', cursive;
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .contact-item {
+            background: rgba(245, 245, 220, 0.7);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(139, 69, 19, 0.2);
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .contact-item:hover {
+            background: rgba(245, 245, 220, 0.9);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.2);
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            color: #8b4513;
+        }
+
+        .contact-name {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .contact-placeholder {
+            font-size: 0.8rem;
+            color: #a0522d;
+            margin-top: 5px;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-section {
+                border-right: none;
+                border-bottom: 2px solid rgba(139, 69, 19, 0.2);
+                padding: 30px 20px;
+            }
+
+            .right-section {
+                padding: 30px 20px;
+                max-height: none;
+            }
+
+            .emma-title {
+                font-size: 2rem;
+            }
+
+            .emma-message {
+                font-size: 1rem;
+            }
+
+            .thanks-title {
+                font-size: 1.5rem;
+            }
+
+            .contact-title {
+                font-size: 1.3rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 10px;
+            }
+
+            .thanks-list {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+        }
+
+        /* Copyright样式 */
+        .copyright {
+            position: fixed;
+            bottom: 15px;
+            right: 20px;
+            z-index: 9999;
+            color: #8b4513;
+            font-size: 12px;
+            font-family: Arial, sans-serif;
+            background: rgba(245, 245, 220, 0.8);
+            padding: 4px 8px;
+            border-radius: 4px;
+            backdrop-filter: blur(10px);
+            transition: opacity 0.3s ease;
+            border: 1px solid rgba(139, 69, 19, 0.2);
+        }
+
+        .copyright:hover {
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i> 返回首页
+    </a>
+    
+    <div class="container">
+        <!-- 左侧：特别感谢Emma -->
+        <div class="left-section">
+            <div class="emma-thanks">
+                <h1 class="emma-title">⭐ 特别感谢Emma ⭐</h1>
+                <p class="emma-message">
+                    感谢Emma成为我生命中最重要的人之一。
+                </p>
+                <p class="emma-message">
+                    感谢Emma教会了我什么是真正的友谊。
+                </p>
+                <div class="heart-animation">❤️</div>
+                <p class="emma-message">
+                    感谢Emma感谢Emma感谢Emma想不出来了
+                </p>
+                <!-- 星星互动机制 -->
+                <div class="star-interaction-container" id="starContainer">
+                    <div class="star-button" id="starButton">⭐</div>
+                    <div class="star-count" id="starCount">0807</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 右侧：致谢 -->
+        <div class="right-section">
+            <div class="thanks-section">
+                <h2 class="thanks-title">🙏 致谢</h2>
+                <div class="thanks-list">
+                    <div class="thanks-item">感谢ChatGPT,Clause,Gemini作为我的好大AI助力我(˶‾᷄ ⁻̫ ‾᷅˵)</div>
+                    <div class="thanks-item">感谢Cursor，</div>
+                    <div class="thanks-item">感谢我妈无偿提供照片素材∠( ᐛ 」∠)＿</div>
+                    <div class="thanks-item">感谢在我和你22年上托福课时买的电脑支撑我到现在</div>
+                    <div class="thanks-item">感谢我的自制力在最后一秒改完代码，没有迟交礼物∠( ᐛ 」∠)＿</div>
+                    <div class="thanks-item">感谢这个世界！</div>
+                </div>
+            </div>
+
+            <div class="contact-section">
+                <h2 class="contact-title">📱 联系方式</h2>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <div class="contact-icon">💬</div>
+                        <div class="contact-name">微信</div>
+                        <div class="contact-placeholder">18901972163</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🎵</div>
+                        <div class="contact-name">抖音</div>
+                        <div class="contact-placeholder">603139389</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🐧</div>
+                        <div class="contact-name">QQ</div>
+                        <div class="contact-placeholder">1652907159</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📷</div>
+                        <div class="contact-name">Instagram</div>
+                        <div class="contact-placeholder">q.olllliii_</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🐦</div>
+                        <div class="contact-name">Twitter</div>
+                        <div class="contact-placeholder">q.olllliii_</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">💼</div>
+                        <div class="contact-name">LinkedIn</div>
+                        <div class="contact-placeholder">Shuyun Qian</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🔍</div>
+                        <div class="contact-name">第五人格</div>
+                        <div class="contact-placeholder">小小盲女是我的/小小oo是我滴</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">⚔️</div>
+                        <div class="contact-name">王者荣耀</div>
+                        <div class="contact-placeholder">楼上tm是情侣</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🎮</div>
+                        <div class="contact-name">STEAM</div>
+                        <div class="contact-placeholder">q.olllliii_</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🐍</div>
+                        <div class="contact-name">贪吃蛇大作战</div>
+                        <div class="contact-placeholder">OliviaQian</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🏘️</div>
+                        <div class="contact-name">梦想城镇</div>
+                        <div class="contact-placeholder">Q</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="copyright">© oo, 2025</div>
+
+    <script>
+        // 星星互动功能
+        const starContainer = document.getElementById('starContainer');
+        const starButton = document.getElementById('starButton');
+        const starCount = document.getElementById('starCount');
+
+        starContainer.addEventListener('click', function(e) {
+            // 按钮点击动画
+            starButton.classList.add('clicked');
+            setTimeout(() => {
+                starButton.classList.remove('clicked');
+            }, 800);
+
+            // 创建飘出的星星
+            const rect = starContainer.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            
+            // 创建多个星星特效
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    createFloatingStar(centerX, centerY);
+                }, i * 100);
+            }
+            
+            // 创建庆祝效果
+            createStarCelebration();
+        });
+
+        function createFloatingStar(x, y) {
+            const star = document.createElement('div');
+            star.className = 'floating-star';
+            star.textContent = '⭐';
+            
+            // 随机偏移位置
+            const offsetX = (Math.random() - 0.5) * 100;
+            const offsetY = (Math.random() - 0.5) * 50;
+            
+            star.style.left = (x + offsetX) + 'px';
+            star.style.top = (y + offsetY) + 'px';
+            document.body.appendChild(star);
+
+            // 3秒后移除元素
+            setTimeout(() => {
+                if (star.parentNode) {
+                    star.parentNode.removeChild(star);
+                }
+            }, 3000);
+        }
+
+        function createStarCelebration() {
+            // 创建更多星星庆祝效果
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    const x = Math.random() * window.innerWidth;
+                    const y = Math.random() * window.innerHeight * 0.3 + window.innerHeight * 0.2;
+                    createFloatingStar(x, y);
+                }, i * 150);
+            }
+        }
+
+        // 页面加载完成后的初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 星星数字固定为0807，不需要额外处理
+            starCount.textContent = '0807';
+        });
+    </script>
+</body>
+</html>
