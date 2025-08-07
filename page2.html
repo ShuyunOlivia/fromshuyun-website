@@ -653,60 +653,156 @@
     }
 
     /* 响应式设计 */
-    @media (max-width: 768px) {
+    
+    /* 平板设备 */
+    @media (max-width: 1024px) {
+      .nav-links {
+        gap: 15px;
+      }
+
+      .nav-link {
+        font-size: 0.9rem;
+        padding: 6px 12px;
+      }
+
       .title {
-        font-size: 2rem;
+        font-size: 2.5rem;
+        margin: 20px 0;
       }
 
       .slideshow-container {
-        height: 60vh;
-        min-height: 350px;
+        height: 65vh;
+        min-height: 400px;
+        margin: 20px;
       }
 
-      .slideshow-title {
-        font-size: 1.5rem;
+      .music-player {
+        bottom: 40px;
+        right: 40px;
+        transform: scale(0.9);
+      }
+    }
+
+    /* 手机设备 */
+    @media (max-width: 768px) {
+      .nav-container {
+        padding: 0 15px;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .nav-logo {
+        font-size: 1.2rem;
+      }
+
+      .nav-links {
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .nav-link {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+      }
+
+      .title {
+        font-size: 2rem;
         margin: 15px 0;
       }
 
+      .subtitle {
+        font-size: 1rem;
+        margin-bottom: 20px;
+      }
+
+      .slideshow-container {
+        height: 55vh;
+        min-height: 300px;
+        margin: 10px;
+      }
+
+      .slideshow-title {
+        font-size: 1.3rem;
+        margin: 10px 0;
+      }
+
       .slide {
-        padding: 15px;
+        padding: 10px;
       }
 
       .slide img[src*="photo"] {
-        max-width: min(85vw, calc(100% - 30px));
-        max-height: min(50vh, calc(100% - 30px));
-        min-width: 250px;
-        min-height: 180px;
+        max-width: min(90vw, calc(100% - 20px));
+        max-height: min(45vh, calc(100% - 20px));
+        min-width: 200px;
+        min-height: 150px;
       }
 
       .slideshow-controls {
-        bottom: 15px;
-        padding: 8px 15px;
+        bottom: 10px;
+        padding: 6px 12px;
+        gap: 8px;
       }
 
       .control-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+      }
+
+      .play-pause-btn {
         width: 35px;
         height: 35px;
       }
 
-      .play-pause-btn {
-        width: 45px;
-        height: 45px;
+      .slide-indicators {
+        bottom: 50px;
+      }
+
+      .indicator {
+        width: 8px;
+        height: 8px;
+        margin: 0 3px;
       }
 
       .photo-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
         padding: 0 10px;
+        gap: 15px;
       }
 
       .photo-stack {
-        width: 250px;
-        height: 220px;
+        width: 100%;
+        max-width: 250px;
+        height: 200px;
       }
 
       .back-btn {
-        padding: 10px 20px;
+        padding: 8px 16px;
         font-size: 0.9rem;
+        top: 15px;
+        left: 15px;
+      }
+
+      .music-player {
+        bottom: 20px;
+        right: 20px;
+        transform: scale(0.8);
+      }
+
+      .gramophone {
+        width: 60px;
+        height: 60px;
+      }
+
+      .gramophone-base {
+        width: 50px;
+        height: 25px;
+      }
+
+      .vinyl-record {
+        width: 35px;
+        height: 35px;
       }
     }
 

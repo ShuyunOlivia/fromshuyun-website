@@ -249,20 +249,142 @@
             max-width: 600px;
         }
 
+        /* 平板设备 */
+        @media (max-width: 1024px) {
+            .surprise-title {
+                font-size: 3rem;
+            }
+
+            .surprise-message {
+                font-size: 1.3rem;
+                line-height: 1.6;
+            }
+
+            .surprise-btn {
+                font-size: 1.1rem;
+                padding: 12px 25px;
+            }
+
+            .back-btn {
+                top: 15px;
+                left: 15px;
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* 手机设备 */
         @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+
+            .back-btn {
+                top: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+
+            .surprise-content {
+                max-width: 100%;
+                padding: 20px;
+            }
+
+            .surprise-title {
+                font-size: 2.5rem;
+                margin-bottom: 20px;
+            }
+
+            .surprise-message {
+                font-size: 1.1rem;
+                line-height: 1.7;
+                margin-bottom: 25px;
+            }
+
+            .surprise-btn {
+                font-size: 1rem;
+                padding: 12px 25px;
+            }
+
             .photo-container {
                 flex-direction: column;
                 gap: 20px;
+                max-width: 100%;
+                padding: 0 10px;
             }
             
             .surprise-photo {
-                max-width: 300px;
-                max-height: 400px;
+                max-width: 100%;
+                max-height: 60vh;
+                width: auto;
+                height: auto;
             }
             
             .photo-message {
                 font-size: 1rem;
                 margin-top: 20px;
+                padding: 0 10px;
+                line-height: 1.6;
+            }
+
+            .close-photos {
+                top: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+                font-size: 1.8rem;
+            }
+        }
+
+        /* 小屏手机 */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .surprise-content {
+                padding: 15px;
+            }
+
+            .surprise-title {
+                font-size: 2rem;
+                margin-bottom: 15px;
+            }
+
+            .surprise-message {
+                font-size: 1rem;
+                line-height: 1.6;
+                margin-bottom: 20px;
+            }
+
+            .surprise-btn {
+                font-size: 0.9rem;
+                padding: 10px 20px;
+            }
+
+            .photo-container {
+                gap: 15px;
+                padding: 0 5px;
+            }
+
+            .surprise-photo {
+                max-width: 100%;
+                max-height: 50vh;
+            }
+
+            .photo-message {
+                font-size: 0.9rem;
+                margin-top: 15px;
+                padding: 0 5px;
+            }
+
+            .close-photos {
+                top: 15px;
+                right: 15px;
+                width: 40px;
+                height: 40px;
+                font-size: 1.5rem;
             }
         }
     </style>
